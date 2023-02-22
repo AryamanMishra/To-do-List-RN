@@ -1,41 +1,42 @@
 import React from 'react'
-import { StyleSheet, Text, View,Pressable } from 'react-native';
-import RemoveItemIcon from 'react-native-vector-icons/Feather';
-import EditItemIcon from 'react-native-vector-icons/FontAwesome';
+import { StyleSheet, Text, View,Pressable,ScrollView } from 'react-native';
+import RemoveItemIcon from 'react-native-vector-icons/Entypo';
+import EditItemIcon from 'react-native-vector-icons/AntDesign';
 
 
 const List = ({ list,clearList,editItem,removeItem })=> {
+
     return (
         <View style={styles.list}>
-            {
-                list.map((item)=> {
-                    const {id,name} = item
-                    return (
-                        <View key={id} style={styles.item}>  
-                            <Text style={styles.itemValue}>{name}</Text>
-                            <View style={styles.btnContainer}>
-                                <RemoveItemIcon
-                                    size={23}
-                                    name="trash-2"
-                                    style={styles.removeItemButton}
-                                    onPress={()=>removeItem(id)}
-                                >
-                                </RemoveItemIcon>
-                                <EditItemIcon
-                                    size={23}
-                                    name='edit'
-                                    style={styles.editItemButton} 
-                                    onPress={()=>editItem(id)}   
-                                >
-                                </EditItemIcon>
+                {
+                    list.map((item)=> {
+                        const {id,name} = item
+                        return (
+                            <View key={id} style={styles.item}>  
+                                <Text style={styles.itemValue}>{name}</Text>
+                                <View style={styles.btnContainer}>
+                                    <RemoveItemIcon
+                                        size={24}
+                                        name="squared-cross"
+                                        style={styles.removeItemButton}
+                                        onPress={()=>removeItem(id)}
+                                    >
+                                    </RemoveItemIcon>
+                                    <EditItemIcon
+                                        size={23}
+                                        name='edit'
+                                        style={styles.editItemButton} 
+                                        onPress={()=>editItem(id)}   
+                                    >
+                                    </EditItemIcon>
+                                </View>
                             </View>
-                        </View>
-                    )
-                })
-            }
+                        )
+                    })
+                }
             <Pressable onPress={clearList} style={styles.btn}>
-				<Text style={styles.btnText}>Clear All</Text>
-			</Pressable>
+                    <Text style={styles.btnText}>Clear All</Text>
+            </Pressable>
         </View>
     )
 }
@@ -43,18 +44,18 @@ const List = ({ list,clearList,editItem,removeItem })=> {
 const styles = StyleSheet.create({
     list: {
         position:'absolute',
-        top:'82%',
-        marginTop:35,
-        marginHorizontal:30,
-        width:400,
-        display:'flex',
+        top:'58%',
+        marginTop:20,
+        marginHorizontal:35,
+        width:350,
+        height:'auto',
         alignItems:'center',
         justifyContent:'center',
     },
 	btn:{
 		width:100,
 		backgroundColor:'rgb(10,100,200)',
-		marginTop:30,
+		marginTop:40,
 		borderRadius:20
 	},
 	btnText :{
@@ -70,11 +71,12 @@ const styles = StyleSheet.create({
         alignItems:'center',
         justifyContent:'space-between',
         borderWidth:1,
-        borderColor:'grey',
-        width:315,
+        borderColor: 'rgba(158, 150, 150, .35)',
+        width:320,
         marginBottom:20
     },
     itemValue: {
+        width:200,
         fontSize:22,
         paddingHorizontal:10,
         paddingVertical:7

@@ -8,13 +8,29 @@ const App = ()=> {
 
 	const [item,setItem] = useState('')
 	const [list,setList] = useState([])
+	const [isEditing,setIsEditing] = useState(false)
+	const [editID,setEditID] = useState(null)
 
 	const handleSubmit = ()=> {
-		const name = item
-		const id = new Date().getTime().toString()
-		const newItem = {id,name}
-		setList([...list,newItem])
-		setItem('')
+		if (item && isEditing) {
+			const newList = list.map((listItem)=> {
+				if (listItem.id === editID) {
+					return {...item,name:item}
+				}
+				return listItem
+			})
+			setList(newList)
+			setItem('')
+			setEditID(null)
+			setIsEditing(false)
+		}
+		else {
+			const name = item
+			const id = new Date().getTime().toString()
+			const newItem = {id,name}
+			setList([...list,newItem])
+			setItem('')
+		}
 	}
 
 	const clearList = ()=> {
@@ -28,7 +44,10 @@ const App = ()=> {
 
 
 	const editItem = (id)=> {
-		setItem(id)
+		const specificItem = list.find((item)=> item.id === id)
+		setIsEditing(true)
+		setEditID(id)
+		setItem(specificItem.name)
 	}
 
 	return (
@@ -45,24 +64,24 @@ const App = ()=> {
 					onPress={handleSubmit}
 					style={styles.btn}
 				>
-					<Text style={styles.btnText}>Add</Text>
+					<Text style={styles.btnText}>{isEditing ? 'Update' : 'Add'}</Text>
 				</Pressable>
 				<StatusBar style="auto" />
-				{
+				
+			</View>
+			{
 					list.length !== 0 && <List 
 											list={list} 
 											clearList={clearList} editItem={editItem} removeItem={removeItem}
 											/>
-				}
-			</View>
-			
+			}
 		</>
 	);
 }
 
 const styles = StyleSheet.create({
 	container :{
-		flex:0.65,
+		flex:0.62,
 		alignItems:'center',
 		justifyContent:'center',
 		backgroundColor:'#fff',
@@ -76,9 +95,9 @@ const styles = StyleSheet.create({
 		marginTop:50
 	},
 	btn:{
-		width:85,
+		width:90,
 		backgroundColor:'rgb(10,100,200)',
-		marginTop:30,
+		marginTop:31,
 		borderRadius:20
 	},
 	btnText :{
