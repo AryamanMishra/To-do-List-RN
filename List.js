@@ -47,17 +47,18 @@ const List = ({ list,clearList,editItem,removeItem })=> {
 
 const styles = StyleSheet.create({
     list: {
-        flex:0.37,
+        flex:0.65,
         marginHorizontal:'7.5%',
         width:350,
         height:'auto',
         alignItems:'center',
         justifyContent:'center',
-        marginBottom:100
+        marginBottom:80,
+
     },
 	clearAllbtn:{
-        marginBottom:10,
-        marginTop:20,
+        marginBottom:5,
+        marginTop:30,
 		width:100,
 		backgroundColor:'rgb(10,100,200)',
 		borderRadius:20

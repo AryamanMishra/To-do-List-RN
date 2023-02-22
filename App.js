@@ -81,10 +81,13 @@ const App = ()=> {
 
 const styles = StyleSheet.create({
 	container :{
-		flex:.9,
+		position:'relative',
+		top:'8%',
+		flex:1,
 		alignItems:'center',
 		justifyContent:'center',
 		backgroundColor:'#fff',
+		marginBottom:50
 	},
 	title :{
 		fontSize:35,
