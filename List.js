@@ -9,9 +9,9 @@ const List = ({ list,clearList,editItem,removeItem })=> {
     return (
         <View style={styles.list}>
             <FlatList 
-                // contentContainerStyle={{
-                //     flexGrow: 1,
-                // }}
+                contentContainerStyle={{
+                    flexGrow: 2,
+                }}
                 data={list}
                 renderItem={({item}) => {
                     return (
