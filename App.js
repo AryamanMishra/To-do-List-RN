@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, View,ScrollView,Pressable,TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, TextInput, View,ScrollView,Pressable } from 'react-native';
 import List from './List';
+import Alert from './Alert';
 
 
 const App = ()=> {
@@ -10,9 +11,18 @@ const App = ()=> {
 	const [list,setList] = useState([])
 	const [isEditing,setIsEditing] = useState(false)
 	const [editID,setEditID] = useState(null)
+	const [alert,setAlert] = useState({show:false,msg:'',type:''})
+
+	const showAlert = (show=false,msg='',type='')=> {
+		setAlert({show,msg,type})
+	}
+
 
 	const handleSubmit = ()=> {
-		if (item && isEditing) {
+		if (!item) {
+			showAlert(true,'please enter a value','danger')
+		}
+		else if (item && isEditing) {
 			const newList = list.map((listItem)=> {
 				if (listItem.id === editID) {
 					return {...item,name:item}
@@ -23,21 +33,25 @@ const App = ()=> {
 			setItem('')
 			setEditID(null)
 			setIsEditing(false)
+			showAlert(true,'value edited successfully','success')
 		}
 		else {
 			const name = item
 			const id = new Date().getTime().toString()
 			const newItem = {id,name}
 			setList([...list,newItem])
+			showAlert(true,'task added to the list','success')
 			setItem('')
 		}
 	}
 
 	const clearList = ()=> {
+		showAlert(true,'emptied list','danger')
 		setList([])
 	}
 
 	const removeItem = (id)=> {
+		showAlert(true,'item removed from the list','danger')
 		const newList = list.filter((item) => item.id !== id)
 		setList(newList)
 	}
@@ -52,7 +66,10 @@ const App = ()=> {
 
 	return (
 		<>
+			<StatusBar style="auto" />
+			{alert.show && <Alert {...alert} showAlert={showAlert}/>}
 			<View style={styles.container}>
+			
 				<Text style={styles.title}>To-do list</Text>
 				<TextInput 
 					style={styles.input}
@@ -73,7 +90,6 @@ const App = ()=> {
 				>
 					<Text style={styles.btnText}>{isEditing ? 'Update' : 'Add'}</Text>
 				</Pressable>
-				<StatusBar style="auto" />
 				
 			</View>
 			{
@@ -98,10 +114,10 @@ const styles = StyleSheet.create({
 		marginTop:30
 	},
 	title :{
-		fontSize:35,
+		fontSize:33,
 	},
 	input: {
-		fontSize:20,
+		fontSize:18,
 		marginTop:60,
 		borderBottomColor:'rgba(158, 150, 150, .2)',
 		borderBottomWidth:1,
