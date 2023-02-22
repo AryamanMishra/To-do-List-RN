@@ -47,7 +47,7 @@ const List = ({ list,clearList,editItem,removeItem })=> {
 
 const styles = StyleSheet.create({
     list: {
-        flex:0.65,
+        flex:0.6,
         marginHorizontal:'7.5%',
         width:350,
         height:'auto',
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
 		textAlign:'center',
 		color:'white',
 		fontSize:15,
-		paddingVertical:12,
+		paddingVertical:10,
 		paddingHorizontal:15
 	},
     item:{

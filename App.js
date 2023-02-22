@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
 	container :{
 		position:'relative',
 		top:'8%',
-		flex:1,
+		flex:0.95,
 		alignItems:'center',
 		justifyContent:'center',
 		backgroundColor:'#fff',
@@ -94,19 +94,22 @@ const styles = StyleSheet.create({
 	},
 	input: {
 		fontSize:20,
-		marginTop:60
+		marginTop:60,
+		borderBottomColor:'rgba(158, 150, 150, .2)',
+		borderBottomWidth:1,
+		textDecorationStyle:'none'
 	},
 	btn:{
 		width:90,
 		backgroundColor:'rgb(10,100,200)',
-		marginTop:31,
+		marginTop:25,
 		borderRadius:20
 	},
 	btnText :{
 		textAlign:'center',
 		color:'white',
-		fontSize:17,
-		paddingVertical:9,
+		fontSize:16,
+		paddingVertical:7.5,
 		paddingHorizontal:9
 	}
 });
