@@ -24,24 +24,26 @@ const Alert = ({show,msg,type,showAlert})=> {
 const styles = StyleSheet.create({
     'alert-success': {
         position:'relative',
-        top:47,
-        left:75,
-        width:'65%',
-        backgroundColor:'rgb(0,40,10)',
+        top:55,
+        left:80,
+        width:'62%',
+        backgroundColor:'rgb(10,80,20)',
         borderRadius:20,
+        marginBottom:40
     },
     'alert-danger': {
         position:'relative',
-        top:50,
-        left:75,
-        width:'65%',
+        top:55,
+        left:80,
+        width:'62%',
         backgroundColor:'#ae2012',
-        borderRadius:20
+        borderRadius:20,
+        marginBottom:40
     },
     text: {
         fontSize:12,
         textAlign:'center',
-        paddingVertical:12,
+        paddingVertical:10,
         color:'white',
         letterSpacing:2,
         textTransform:'capitalize'
