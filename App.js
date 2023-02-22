@@ -81,18 +81,17 @@ const App = ()=> {
 
 const styles = StyleSheet.create({
 	container :{
-		flex:0.62,
+		flex:0.75,
 		alignItems:'center',
 		justifyContent:'center',
 		backgroundColor:'#fff',
 	},
 	title :{
 		fontSize:35,
-		// fontFamily:'Arial'
 	},
 	input: {
 		fontSize:20,
-		marginTop:50
+		marginTop:60
 	},
 	btn:{
 		width:90,

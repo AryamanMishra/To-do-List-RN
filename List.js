@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View,Pressable,ScrollView } from 'react-native';
+import { StyleSheet, Text, View,Pressable,FlatList,ScrollView } from 'react-native';
 import RemoveItemIcon from 'react-native-vector-icons/Entypo';
 import EditItemIcon from 'react-native-vector-icons/AntDesign';
 
@@ -8,57 +8,61 @@ const List = ({ list,clearList,editItem,removeItem })=> {
 
     return (
         <View style={styles.list}>
-                {
-                    list.map((item)=> {
-                        const {id,name} = item
-                        return (
-                            <View key={id} style={styles.item}>  
-                                <Text style={styles.itemValue}>{name}</Text>
+            <FlatList 
+                contentContainerStyle={{
+                    flexGrow: 1,
+                }}
+                data={list}
+                renderItem={({item}) => {
+                    return (
+                        <View key={item.id} style={styles.item}>  
+                                <Text style={styles.itemValue}>{item.name}</Text>
                                 <View style={styles.btnContainer}>
                                     <RemoveItemIcon
                                         size={24}
                                         name="squared-cross"
                                         style={styles.removeItemButton}
-                                        onPress={()=>removeItem(id)}
+                                        onPress={()=>removeItem(item.id)}
                                     >
                                     </RemoveItemIcon>
                                     <EditItemIcon
                                         size={23}
                                         name='edit'
                                         style={styles.editItemButton} 
-                                        onPress={()=>editItem(id)}   
+                                        onPress={()=>editItem(item.id)}   
                                     >
                                     </EditItemIcon>
                                 </View>
                             </View>
-                        )
-                    })
-                }
-            <Pressable onPress={clearList} style={styles.btn}>
-                    <Text style={styles.btnText}>Clear All</Text>
+                    )
+                }}
+            />
+            <Pressable onPress={clearList} style={styles.clearAllbtn}>
+                    <Text style={styles.clearAllbtnText}>Clear All</Text>
             </Pressable>
         </View>
     )
 }
 
+
 const styles = StyleSheet.create({
     list: {
-        position:'absolute',
-        top:'58%',
-        marginTop:20,
-        marginHorizontal:35,
+        flex:0.40,
+        marginHorizontal:'7.5%',
         width:350,
         height:'auto',
         alignItems:'center',
         justifyContent:'center',
+        marginBottom:60
     },
-	btn:{
+	clearAllbtn:{
+        marginBottom:10,
+        marginTop:20,
 		width:100,
 		backgroundColor:'rgb(10,100,200)',
-		marginTop:40,
 		borderRadius:20
 	},
-	btnText :{
+	clearAllbtnText :{
 		textAlign:'center',
 		color:'white',
 		fontSize:15,
