@@ -37,7 +37,18 @@ const List = ({ list,clearList,editItem,removeItem })=> {
                     )
                 }}
             />
-            <Pressable onPress={clearList} style={styles.clearAllbtn}>
+            <Pressable 
+                onPress={clearList} 
+                style={({pressed}) => [
+						{
+							backgroundColor: pressed ? 'black' : 'rgb(10,100,200)',
+                            marginBottom:5,
+                            marginTop:30,
+                            width:100,
+                            borderRadius:20
+						},
+        			]}
+                >
                     <Text style={styles.clearAllbtnText}>Clear All</Text>
             </Pressable>
         </View>
@@ -47,22 +58,22 @@ const List = ({ list,clearList,editItem,removeItem })=> {
 
 const styles = StyleSheet.create({
     list: {
-        flex:0.6,
+        flex:0.7,
         marginHorizontal:'7.5%',
         width:350,
         height:'auto',
         alignItems:'center',
         justifyContent:'center',
         marginBottom:80,
-
+        marginTop:30
     },
-	clearAllbtn:{
-        marginBottom:5,
-        marginTop:30,
-		width:100,
-		backgroundColor:'rgb(10,100,200)',
-		borderRadius:20
-	},
+	// clearAllbtn:{
+    //     marginBottom:5,
+    //     marginTop:30,
+	// 	width:100,
+	// 	backgroundColor:'rgb(10,100,200)',
+	// 	borderRadius:20
+	// },
 	clearAllbtnText :{
 		textAlign:'center',
 		color:'white',

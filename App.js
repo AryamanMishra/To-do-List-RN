@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, View,ScrollView,Pressable } from 'react-native';
+import { StyleSheet, Text, TextInput, View,ScrollView,Pressable,TouchableHighlight } from 'react-native';
 import List from './List';
 
 
@@ -62,7 +62,14 @@ const App = ()=> {
 				/>
 				<Pressable 
 					onPress={handleSubmit}
-					style={styles.btn}
+					style={({pressed}) => [
+						{
+							backgroundColor: pressed ? 'black' : 'rgb(10,100,200)',
+							width:90,
+							marginTop:25,
+							borderRadius:20,
+						},
+        			]}
 				>
 					<Text style={styles.btnText}>{isEditing ? 'Update' : 'Add'}</Text>
 				</Pressable>
@@ -83,11 +90,12 @@ const styles = StyleSheet.create({
 	container :{
 		position:'relative',
 		top:'8%',
-		flex:0.95,
+		flex:1,
 		alignItems:'center',
 		justifyContent:'center',
 		backgroundColor:'#fff',
-		marginBottom:50
+		marginBottom:50,
+		marginTop:30
 	},
 	title :{
 		fontSize:35,
@@ -99,12 +107,12 @@ const styles = StyleSheet.create({
 		borderBottomWidth:1,
 		textDecorationStyle:'none'
 	},
-	btn:{
-		width:90,
-		backgroundColor:'rgb(10,100,200)',
-		marginTop:25,
-		borderRadius:20
-	},
+	// btn:{
+	// 	width:90,
+	// 	backgroundColor:'rgb(10,100,200)',
+	// 	marginTop:25,
+	// 	borderRadius:20,
+	// },
 	btnText :{
 		textAlign:'center',
 		color:'white',
