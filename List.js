@@ -9,9 +9,9 @@ const List = ({ list,clearList,editItem,removeItem })=> {
     return (
         <View style={styles.list}>
             <FlatList 
-                contentContainerStyle={{
-                    flexGrow: 1,
-                }}
+                // contentContainerStyle={{
+                //     flexGrow: 1,
+                // }}
                 data={list}
                 renderItem={({item}) => {
                     return (
@@ -47,13 +47,13 @@ const List = ({ list,clearList,editItem,removeItem })=> {
 
 const styles = StyleSheet.create({
     list: {
-        flex:0.40,
+        flex:0.37,
         marginHorizontal:'7.5%',
         width:350,
         height:'auto',
         alignItems:'center',
         justifyContent:'center',
-        marginBottom:60
+        marginBottom:100
     },
 	clearAllbtn:{
         marginBottom:10,
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     },
     itemValue: {
         width:200,
-        fontSize:22,
+        fontSize:20,
         paddingHorizontal:10,
         paddingVertical:7
     },
