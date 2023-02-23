@@ -66,7 +66,7 @@ const App = ()=> {
 
 	return (
 		<>
-			<StatusBar style="auto" />
+			{/* <StatusBar style="auto" /> */}
 			{alert.show && <Alert {...alert} showAlert={showAlert}/>}
 			<View style={styles.container}>
 			
