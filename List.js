@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
 	clearAllbtnText :{
 		textAlign:'center',
 		color:'white',
-		fontSize:15,
+		fontSize:14,
 		paddingVertical:10,
 		paddingHorizontal:15
 	},

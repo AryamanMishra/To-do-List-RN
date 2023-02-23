@@ -83,7 +83,7 @@ const App = ()=> {
 						{
 							backgroundColor: pressed ? 'black' : 'rgb(10,100,200)',
 							width:90,
-							marginTop:25,
+							marginTop:27,
 							borderRadius:20,
 						},
         			]}
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
 	btnText :{
 		textAlign:'center',
 		color:'white',
-		fontSize:16,
+		fontSize:15.5,
 		paddingVertical:7.5,
 		paddingHorizontal:9
 	}
