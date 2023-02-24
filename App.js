@@ -10,6 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const storeData = async (list) => {
 	try {
 		await AsyncStorage.setItem('list', JSON.stringify(list));
+		
 	} 
 	catch (e) {
 	  	console.log(e)
@@ -31,17 +32,18 @@ const getData = async () => {
 	}
 }
 
-
+let prevList = []
 const App = ()=> {
-	let prevList = []
-	getData().then(data => prevList = data)
-	console.log(prevList)
+
+	getData().then(data=>prevList=data)
+
 	const [item,setItem] = useState('')
 	const [list,setList] = useState(prevList)
 	const [isEditing,setIsEditing] = useState(false)
 	const [editID,setEditID] = useState(null)
 	const [alert,setAlert] = useState({show:false,msg:'',type:''})
 
+	
 	const showAlert = (show=false,msg='',type='')=> {
 		setAlert({show,msg,type})
 	}
@@ -86,7 +88,7 @@ const App = ()=> {
 		showAlert(true,'item removed from the list','danger')
 		const newList = list.filter((item) => item.id !== id)
 		setList(newList)
-		storeData([])
+		storeData(newList)
 	}
 
 
@@ -99,7 +101,7 @@ const App = ()=> {
 
 	return (
 		<>
-			{/* <StatusBar style="auto" /> */}
+			<StatusBar style="auto" />
 			{alert.show && <Alert {...alert} showAlert={showAlert}/>}
 			<View style={styles.container}>
 			
