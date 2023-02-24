@@ -1,3 +1,2 @@
 add dark mode
-fix async storage
 re deploy

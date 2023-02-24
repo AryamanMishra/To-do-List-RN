@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TextInput, View,ScrollView,Pressable } from 'react-native';
 import List from './List';
@@ -16,6 +16,58 @@ const App = ()=> {
 	const [isEditing,setIsEditing] = useState(false)
 	const [editID,setEditID] = useState(null)
 	const [alert,setAlert] = useState({show:false,msg:'',type:''})
+
+
+	const setData = async()=> {
+		if (list.length === 0) {
+			try {
+				await AsyncStorage.setItem('@list', JSON.stringify([])).then((value)=> {
+					console.log(list)
+				})
+			} 
+			catch (error) {
+				console.log('Error in saving empty array to async storage', error)
+			}
+		}
+		else {
+			try {
+				await AsyncStorage.setItem('@list',JSON.stringify(list)).then((value)=> {
+					console.log(list)
+				})
+			} 
+			catch (error) {
+				console.log('Error in saving list to storage', error)
+			}
+		}
+	}
+
+
+	const getData = async()=> {
+		try {
+			await AsyncStorage.getItem('@list').then((value)=> {
+				if (value !== null) {
+					setList(JSON.parse(value))
+				}
+				else {
+					setList([])
+				}
+			})
+			console.log(list)
+		}
+		catch(err){
+			console.log('Error in getItem',err)
+		}
+	}
+
+	useEffect(()=> {
+		getData()
+	},[])
+
+
+	useEffect(()=> {
+		setData()
+	},[list])
+
 
 	
 	const showAlert = (show=false,msg='',type='')=> {
@@ -38,17 +90,21 @@ const App = ()=> {
 			setItem('')
 			setEditID(null)
 			setIsEditing(false)
-			showAlert(true,'value edited successfully','success')
+			showAlert(true,'task edited successfully','success')
 		}
 		else {
 			const name = item
 			const id = new Date().getTime().toString()
 			const newItem = {id,name}
-			setList([...list,newItem])
+			setList([newItem,...list])
 			showAlert(true,'task added to the list','success')
 			setItem('')
+
 		}
 	}
+
+
+
 
 	const clearList = ()=> {
 		showAlert(true,'emptied list','danger')
@@ -56,7 +112,7 @@ const App = ()=> {
 	}
 
 	const removeItem = (id)=> {
-		showAlert(true,'item removed from the list','danger')
+		showAlert(true,'task removed from the list','danger')
 		const newList = list.filter((item) => item.id !== id)
 		setList(newList)
 	}
