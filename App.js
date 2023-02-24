@@ -32,6 +32,7 @@ const getData = async () => {
 	}
 }
 
+
 let prevList = []
 const App = ()=> {
 
