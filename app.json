@@ -8,7 +8,7 @@
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/newSplash.png",
-      "backgroundColor": "#5C3AC0"
+      "backgroundColor": "#5A40A3"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
