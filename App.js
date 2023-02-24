@@ -7,39 +7,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
-const storeData = async (list) => {
-	try {
-		await AsyncStorage.setItem('list', JSON.stringify(list));
-		
-	} 
-	catch (e) {
-	  	console.log(e)
-	}
-}
 
-
-const getData = async () => {
-	try {
-		const list = await AsyncStorage.getItem('list');
-		if (list !== null) {
-			return JSON.parse(list)
-		}
-		return []
-
-	} 
-	catch(e) {
-	  	console.log(e)
-	}
-}
-
-
-let prevList = []
 const App = ()=> {
 
-	getData().then(data=>prevList=data)
 
 	const [item,setItem] = useState('')
-	const [list,setList] = useState(prevList)
+	const [list,setList] = useState([])
 	const [isEditing,setIsEditing] = useState(false)
 	const [editID,setEditID] = useState(null)
 	const [alert,setAlert] = useState({show:false,msg:'',type:''})
@@ -62,7 +35,6 @@ const App = ()=> {
 				return listItem
 			})
 			setList(newList)
-			storeData(newList)
 			setItem('')
 			setEditID(null)
 			setIsEditing(false)
@@ -73,7 +45,6 @@ const App = ()=> {
 			const id = new Date().getTime().toString()
 			const newItem = {id,name}
 			setList([...list,newItem])
-			storeData(list)
 			showAlert(true,'task added to the list','success')
 			setItem('')
 		}
@@ -82,14 +53,12 @@ const App = ()=> {
 	const clearList = ()=> {
 		showAlert(true,'emptied list','danger')
 		setList([])
-		storeData([])
 	}
 
 	const removeItem = (id)=> {
 		showAlert(true,'item removed from the list','danger')
 		const newList = list.filter((item) => item.id !== id)
 		setList(newList)
-		storeData(newList)
 	}
 
 
