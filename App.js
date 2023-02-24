@@ -22,21 +22,21 @@ const App = ()=> {
 		if (list.length === 0) {
 			try {
 				await AsyncStorage.setItem('@list', JSON.stringify([])).then((value)=> {
-					console.log(list)
+					// console.log(list)
 				})
 			} 
 			catch (error) {
-				console.log('Error in saving empty array to async storage', error)
+				// console.log('Error in saving empty array to async storage', error)
 			}
 		}
 		else {
 			try {
 				await AsyncStorage.setItem('@list',JSON.stringify(list)).then((value)=> {
-					console.log(list)
+					// console.log(list)
 				})
 			} 
 			catch (error) {
-				console.log('Error in saving list to storage', error)
+				// console.log('Error in saving list to storage', error)
 			}
 		}
 	}
@@ -52,10 +52,10 @@ const App = ()=> {
 					setList([])
 				}
 			})
-			console.log(list)
+			// console.log(list)
 		}
 		catch(err){
-			console.log('Error in getItem',err)
+			// console.log('Error in getItem',err)
 		}
 	}
 
@@ -69,7 +69,7 @@ const App = ()=> {
 	},[list])
 
 
-	
+
 	const showAlert = (show=false,msg='',type='')=> {
 		setAlert({show,msg,type})
 	}

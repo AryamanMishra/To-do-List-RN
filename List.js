@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',
         marginBottom:60,
-        marginTop:30
+        marginTop:45
     },
 	// clearAllbtn:{
     //     marginBottom:5,
