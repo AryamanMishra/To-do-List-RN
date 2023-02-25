@@ -6,6 +6,7 @@ import EditItemIcon from 'react-native-vector-icons/AntDesign';
 
 const List = ({ list,clearList,editItem,removeItem })=> {
 
+  
     return (
         <View style={styles.list}>
             <FlatList 
@@ -41,7 +42,7 @@ const List = ({ list,clearList,editItem,removeItem })=> {
                 onPress={clearList} 
                 style={({pressed}) => [
 						{
-							backgroundColor: pressed ? 'black' : 'rgb(10,100,200)',
+							backgroundColor: pressed ? 'black' : '#5A40A3',
                             marginBottom:5,
                             marginTop:30,
                             width:100,

@@ -3,6 +3,8 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TextInput, View,ScrollView,Pressable } from 'react-native';
 import List from './List';
 import Alert from './Alert';
+import AddItemButton from 'react-native-vector-icons/Entypo'
+import UpdateItemButton from 'react-native-vector-icons/MaterialCommunityIcons'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -138,25 +140,41 @@ const App = ()=> {
 					onChangeText={(item)=>setItem(item)}
 					placeholder='Add Task'
 				/>
-				<Pressable 
-					onPress={handleSubmit}
+				<Pressable
 					style={({pressed}) => [
 						{
-							backgroundColor: pressed ? 'black' : 'rgb(10,100,200)',
-							width:90,
-							marginTop:27,
-							borderRadius:20,
+							backgroundColor: pressed ? 'black' : '#5A40A3',
+							width:36,
+							marginTop:40,
+							borderRadius:25,
+							paddingVertical:3,
+							paddingHorizontal:3.6
 						},
         			]}
+					onPress={handleSubmit}
 				>
-					<Text style={styles.btnText}>{isEditing ? 'Update' : 'Add'}</Text>
+					{isEditing ? 
+						<UpdateItemButton 
+							name='update'
+							size={29}
+							color='white'
+						/>:
+						<AddItemButton 
+							name='plus'
+							size={29}
+							color='white'
+						/>
+					}
+					
 				</Pressable>
+				
 				
 			</View>
 			{
 					list.length !== 0 && <List 
 											list={list} 
 											clearList={clearList} editItem={editItem} removeItem={removeItem}
+											setIsEditing={setIsEditing} isEditing={isEditing}
 											/>
 			}
 		</>
